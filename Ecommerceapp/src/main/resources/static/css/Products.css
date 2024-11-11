@@ -1,0 +1,80 @@
+/* Set a fixed height for the carousel */
+
+html{
+	
+	font-size: 62.5%;
+	box-sizing: border-box;
+	
+}
+
+.container{
+	
+	
+	height:100vh;
+	width:100vw;
+	
+}
+.carousel {
+    height: 300px;
+    width:400px;
+    
+    position: absolute;
+    top:0px;
+    	
+    right:0px;
+    
+    background-color:maroon;
+}
+
+
+
+li{
+	list-style: none;
+}
+
+.products{
+	
+	width:100%;
+	gap:20px;
+	top:30px;
+	list-style: none;
+	margin-bottom: 30px; 
+	
+	display: flex;
+	
+	
+	
+}
+
+
+
+
+
+.products--container-description{
+	
+	position:relative;
+    right:0px;
+	
+	max-width:100%;
+	font-size: 1.2rem;
+}
+
+.products--container-description li{
+	font-size: 1vw;
+}
+
+/* Image styling to fit correctly */
+.carousel--images {
+    height: 300px; 
+    margin-top:25px; /* Set your desired height */
+    width: 400px; 
+    background-color: black; 
+    object-fit: contain;  /* Maintain aspect ratio */
+}
+
+header{
+	width:600px;
+	background-color: aqua;
+}
+
+

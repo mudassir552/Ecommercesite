@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <div th:replace="fragments :: headFragment('/css/Products.css')"></div>
+    
+    
+    ></div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+	
+	<div th:replace="fragments :: headerFragment()"></div>
+    <div class="container" th:attr="data-products-length=${#lists.size(Products)}"  >
+        <div th:each="product : ${Products}  "    class="products ">
+			<div class="products--container-description">
+            <h2 th:text="${product.productName}">Product Name</h2>
+            <p th:text="${product.productCategory}">Product Category</p>
+            <p th:text="${product.price}">Price</p>
+            <p th:text="${product.productDesc}">Description</p>
+            <p th:text="${product.brand}">Brand</p>
+            
+            <!-- Product Specifications -->
+            <ul class="products-specific--container">
+                <li class="product--specifications" th:each="spec : ${product.productSpecifications}">
+                    <span th:text="${spec.key}">Spec Key</span> : 
+                    <span th:text="${spec.value}">Spec Value</span>
+                </li>
+            </ul>
+
+       
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Carousel Items (Images) -->
+                    <div th:each="image, iterStat : ${product.images}" class="carousel-item" 
+                        th:classappend="${iterStat.index == 0} ? ' active'">
+                        <img class="carousel--images" th:src="@{${image}}" alt="Product Image">
+                    </div>
+                </div>
+                
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+ </div>
+   
+            <!-- Bootstrap Carousel -->
+           
+ <script th:src="@{/js/Products.js}"></script>
+    
+    
+    
+</body>
+</html>

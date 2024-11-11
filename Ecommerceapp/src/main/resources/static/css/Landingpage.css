@@ -1,0 +1,116 @@
+
+
+html, body {
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+body {
+    min-width: 100vw !important; 
+    /* Ensures that body doesn't restrict width */
+}
+
+.navbar {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    
+}
+
+.navbar-toggler{
+	
+	position:relative;
+	margin-right:-70px;
+}
+
+.navbar-nav li {
+	 margin:10px;
+}
+
+.container{
+	
+	max-width:100vw;
+	height:auto;
+	
+	
+	
+}
+
+.blur-image {
+    filter: blur(10px); /* Initial blur effect */
+    transition: filter 0.5s ease; /* Smooth transition effect */
+    width: 100%; /* Make the image responsive */
+    height:100%;
+   
+}
+
+.clothes{
+	display:flex;
+	margin-top:30px;
+  
+	  width: 100%; /* Fixed width */
+    height: auto;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items:center;
+   margin-left:20px;
+	gap:50px;
+	overflow:hidden;
+}
+
+.men--dress,.women--dress,.electronic--access,.women--jewel{
+	
+	width: 400px; /* Take full width of the container */
+    height: 400px; /* Take full height of the container */
+	object-fit: cover;
+	
+
+}
+
+
+
+
+
+
+.carousel-inner {
+	width:110vw;
+	
+    height: 100vh; /* Set your desired height */
+    overflow: hidden;
+    
+     
+   /* Prevents overflow of images */
+}
+
+
+.carousel-img {
+    height: 100%; /* Make the image take the full height of the carousel */
+    width: 100%; /* Make the image take the full width of the carousel */
+    object-fit: contain; 
+     /* Ensure the entire image is visible */
+}
+
+
+
+
+
+
+
+.form-inline {
+  width: 100%; /* Make the form take full width */
+  max-width: 600px;
+  position:relative; 
+ 
+}
+
+.btn-outline-success{
+	position:absolute;
+	top:0px;
+	right:-75px;
+	
+}
+
+

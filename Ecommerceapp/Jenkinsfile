@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+
+    environment {
+        REMOTE_SERVER = '147.79.75.161' // Replace with the actual remote server
+        REMOTE_USER = 'root' // Replace with the user on the remote server
+        JAR_FILE = 'Financeapp-0.0.1-SNAPSHOT.jar' // Ensure the .jar extension is included
+        DEPLOY_DIR = '/opt/app' // Replace with the deployment directory on the remote server
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                // Build the application (uncomment this line if using Maven)
+                sh 'mvn clean package' // Uncomment if using Maven to build your application
+            }
+        }
+
+        stage('Transfer Jar to Remote Server') {
+            steps {
+                script {
+                    sshagent(['476ff323-4fef-4bd6-ab65-7ef84e590edf']) {
+                        sh """
+                            scp -o StrictHostKeyChecking=no target/${JAR_FILE} ${REMOTE_USER}@${REMOTE_SERVER}:${DEPLOY_DIR}
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('Deploy on Remote Server') {
+            steps {
+                script {
+                    sshagent(['476ff323-4fef-4bd6-ab65-7ef84e590edf']) {
+                        sh """
+                            ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_SERVER} '
+                            cd ${DEPLOY_DIR} &&
+                            nohup java -jar ${JAR_FILE} > app.log 2>&1 &
+                            '
+                        """
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Cleanup actions can be added here if needed.'
+        }
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed.'
+        }
+    }
+}
