@@ -1,0 +1,70 @@
+[{
+  "_id": "671dfb65a4d9c5581de1d5b3",
+  "productId": "1",
+  "productName": "Classic White Shirt",
+  "productCategory": "Shirts",
+  "price": 899,
+  "imageIds": "1",
+  "productDesc": "Cotton fabric with a crisp finish.",
+  "brand": "Roadster"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5b4",
+  "productId": "2",
+  "productName": "Casual Blue Check Shirt",
+  "productCategory": "Shirts",
+  "price": 1099,
+  "imageIds": "2",
+  "productDesc": "Comfortable cotton with a trendy check pattern.",
+  "brand": "Roadster"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5b5",
+  "productId": "3",
+  "productName": "Black Slim Fit Shirt",
+  "productCategory": "Shirts",
+  "price": 1299,
+  "imageIds": "3",
+  "productDesc": "Stylish slim fit for a modern look.",
+  "brand": "Roadster"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5b6",
+  "productId": "4",
+  "productName": "Light Grey Casual Shirt",
+  "productCategory": "Shirts",
+  "price": 999,
+  "imageIds": "4",
+  "productDesc": "Perfect for a laid-back day out.",
+  "brand": "Roadster"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5b7",
+  "productId": "5",
+  "productName": "Denim Shirt",
+  "productCategory": "Shirts",
+  "price": 1499,
+  "imageIds": "5",
+  "productDesc": "Classic denim look with a relaxed fit.",
+  "brand": "Roadster"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5ba",
+  "productId": "6",
+  "productName": "Olive Green Shirt",
+  "productCategory": "Shirts",
+  "price": 1199,
+  "imageIds": "6",
+  "productDesc": "A versatile shirt for casual outings.",
+  "brand": "Roadster"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5bb",
+  "productId": "7",
+  "productName": "Maroon Formal Shirt",
+  "productCategory": "Shirts",
+  "price": 1399,
+  "imageIds": "7",
+  "productDesc": "Elegant choice for formal occasions.",
+  "brand": "Roadster"
+}]

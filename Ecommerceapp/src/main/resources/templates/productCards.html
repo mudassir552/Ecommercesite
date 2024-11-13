@@ -8,6 +8,9 @@
 </head>
 
 <body>
+	
+	
+
     <div class="container" th:attr="data-products-length=${#lists.size(ProductsDto)}">
     <div class="row">
         <div th:each="product : ${ProductsDto}" class="col-12 col-sm-6 col-md-4">

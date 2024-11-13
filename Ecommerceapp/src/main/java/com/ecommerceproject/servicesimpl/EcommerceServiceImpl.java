@@ -1,65 +1,41 @@
 package com.ecommerceproject.servicesimpl;
 
 import java.util.ArrayList;
-import  com.ecommerceproject.repository.ImageRepository;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.core.MongoOperations;
+
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
-import com.ecommerceproject.products.ProductImages;
 import com.ecommerceproject.products.Products;
 import com.ecommerceproject.products.dto.ProductsDto;
 import com.ecommerceproject.services.EcommerceService;
 import org.springframework.beans.factory.annotation.Qualifier;
-import com.ecommerceproject.utils.MongoConfig;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import org.bson.Document;
-import com.mongodb.client.FindIterable;
 
-import jakarta.annotation.PostConstruct;
 import org.bson.Document;
+
 @Service
 public class EcommerceServiceImpl implements EcommerceService{
 	
-	String MONGO_DB_PASSWORD="";
-	String MONGO_USER="";
-	String MONGO_URI="";
-	@PostConstruct
-	public void checkEnvVariables() {
 	
-		MONGO_DB_PASSWORD=System.getenv("MONGO_DB_PASSWORD");
-		MONGO_USER=System.getenv("MONGO_USER");
-		MONGO_URI=System.getenv("MONGO_URI");
 	
+
+	private final MongoTemplate mongoTemplate;  // For productImagesMongoTemplate
+	private final MongoTemplate mongoTemplate2; // For productDescMongoTemplate
+
+	public EcommerceServiceImpl(
+	    @Qualifier("productImagesMongoTemplate") MongoTemplate mongoTemplate,
+	    @Qualifier("productDescMongoTemplate") MongoTemplate mongoTemplate2) {
+
+	    this.mongoTemplate = mongoTemplate;
+	    this.mongoTemplate2 = mongoTemplate2;
 	}
-	
-	  @Autowired
-	    @Qualifier("productsMongoOperations")
-	    private MongoOperations productsMongoOperations;
-
-	   
-	    @Autowired
-	    @Qualifier("productImagesMongoOperations")
-	    private MongoOperations productImagesMongoOperations;
-
-	  @Autowired
-	  private ImageRepository ImageRepository;
-	    
-	  @Autowired
-     private com.ecommerceproject.repository.Ecommercerepo Ecommercerepo;
-	  
-	  
-	 
 	
 	
     @Override
@@ -69,7 +45,7 @@ public class EcommerceServiceImpl implements EcommerceService{
 		
 	
 		
-	  List<Products> ProductsList = productsMongoOperations.find(query, Products.class);
+	  List<Products> ProductsList = mongoTemplate2.find(query, Products.class);
 	  
 	  
 	  System.out.println("Fetched products: " + ProductsList.size());  // Log the size
@@ -93,14 +69,13 @@ public class EcommerceServiceImpl implements EcommerceService{
 	        
 	        
 	        
-	        List<Products>products=productsMongoOperations.find(query, Products.class);
+	        List<Products>products=mongoTemplate2.find(query, Products.class);
 	        
 	        
-	           products.stream().forEach(product-> System.out.println("Entered products"+product));
 	   
 	        for(Products product :products) {
 	       String productImages = findImagesByProductId(product.getProductId());
-           System.out.println("IMAGESSSS"+productImages);
+           
 	            
 	       ProductsDto proddto=new ProductsDto();
 	        	
@@ -128,51 +103,28 @@ public class EcommerceServiceImpl implements EcommerceService{
 	        
 	}
 	
+	// Make MongoClient a static final object to reuse it
+	//private  final String uri = String.format("mongodb://%s:%s@%s:27017/ProductImages?authSource=admin", 
+			//MongoConfig.getMONGO_USER() ,MongoConfig.getMONGO_DB_PASSWORD(),MongoConfig.getMONGO_URI());
+	//private  final MongoClient mongoClient = MongoClients.create(uri);
+
 	private String findImagesByProductId(String productId) {
-		
-		System.out.println("MONGO_USER: " + System.getenv("MONGO_USER"));
-	    System.out.println("MONGO_DB_PASSWORD: " + System.getenv("MONGO_DB_PASSWORD"));
-	    System.out.println("MONGO_URI: " + System.getenv("MONGO_URI"));
-		
-		String imageUrl="";
-		/*
-		 * Query imageQuery = new Query();
-		 * imageQuery.addCriteria(Criteria.where(productId).is(productId));
-		 * 
-		 * Document document = productImagesMongoOperations.findOne(imageQuery ,
-		 * Document.class, "Images"); String productImage =
-		 * document.getString("imageUrl");
-		 * System.out.println("\033[32mENTERED IMAGESSS\033[0m");
-		 * System.out.println("PIMAGESSSSS"+document.getString("imageUrl")); return
-		 * productImage != null ? productImage: null;
-		 */
-	    
-		String uri = String.format("mongodb://%s:%s@%s:27017/ProductImages?authSource=admin", 
-                MONGO_USER, MONGO_DB_PASSWORD, MONGO_URI);
-        MongoClient mongoClient = MongoClients.create(uri);
-        MongoDatabase database = mongoClient.getDatabase("ProductImages"); // Get the database
-        MongoCollection<Document> collection = database.getCollection("Images");
-      
+		  Query query = new Query(Criteria.where("productId").is(productId));
 
-        // Create query for productId
-        Document query = new Document("productId", productId);
+	        // Add projection to only fetch the 'imageUrl' field (avoid fetching unnecessary data)
+	        query.fields().include("imageUrl");
 
-        // Use findOne for better performance (only gets the first match)
-        Document document = collection.find(query).first();
+	        // Use findOne to get the first matching document
+	        Document result = mongoTemplate.findOne(query, Document.class, "Images");
 
-        
-        // Iterate through the results and print the 'imageUrl' field
-		
-        if (document != null) {
-            imageUrl = document.getString("imageUrl");
-            System.out.println("\033[32mENTERED IMAGESSS\033[0m");
-            System.out.println("PIMAGESSSSS: " + imageUrl);
-        }
+	        // If a document is found, return the image URL
+	        if (result != null) {
+	            return result.getString("imageUrl");
+	        }
 
-        
-		  
-	
-         return imageUrl;
+	        // If no document is found, return null
+	        return null;
+	    }
 
-}
+
 }

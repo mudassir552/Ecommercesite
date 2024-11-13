@@ -22,9 +22,6 @@ public class EcommerceController {
 	
 
 	
-	@Autowired
-	private com.ecommerceproject.repository.Ecommercerepo Ecommercerepo;
-	
 	
 	 @GetMapping("/products/{category}")
 	    public  String getProductsByCategory(@PathVariable("category") String category, Model model){

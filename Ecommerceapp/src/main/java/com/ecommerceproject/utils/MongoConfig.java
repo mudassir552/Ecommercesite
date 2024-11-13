@@ -3,21 +3,20 @@ package com.ecommerceproject.utils;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
-import org.springframework.beans.factory.annotation.Value;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import org.bson.Document;
-import com.mongodb.client.FindIterable;
+
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.stereotype.Component;
+
 import jakarta.annotation.PostConstruct;
 
 @Configuration
+@Component
 public class MongoConfig {
+	
+	
 	
 	 private String MONGO_DB_PASSWORD = "";
 	    private String MONGO_USER = "";
@@ -48,36 +47,29 @@ public class MongoConfig {
 	    public String getMONGO_URI() {
 	        return MONGO_URI;
 	    }
-	
-	
-	
-	
-	
-	 @Bean(name = "mongoTemplate")
+	    @Bean(name = "mongoTemplate")  // Change this name to "mongoTemplate"
 	    public MongoTemplate mongoTemplate() {
-		 
-			String uri = String.format("mongodb://%s:%s@%s:27017/Products_desc?authSource=admin", 
-                    MONGO_USER, MONGO_DB_PASSWORD, MONGO_URI);
+	        String uri = String.format("mongodb://%s:%s@%s:27017/ProductImages?authSource=admin", 
+	                MONGO_USER, MONGO_DB_PASSWORD, MONGO_URI);
 	        MongoClient mongoClient = MongoClients.create(uri);
-	        return new MongoTemplate(new SimpleMongoClientDatabaseFactory(mongoClient, "Products_desc"));
+	        return new MongoTemplate(mongoClient, "ProductImages");
+	    }
+	    
+	    @Bean(name = "productImagesMongoTemplate")
+	    public MongoTemplate productImagesMongoTemplate() {
+	        String uri = String.format("mongodb://%s:%s@%s:27017/ProductImages?authSource=admin", 
+	                MONGO_USER, MONGO_DB_PASSWORD, MONGO_URI);
+	        MongoClient mongoClient = MongoClients.create(uri);
+	        return new MongoTemplate(mongoClient, "ProductImages");
+	    }
+
+	    @Bean(name = "productDescMongoTemplate")
+	    public MongoTemplate productDescMongoTemplate() {
+	        String uri = String.format("mongodb://%s:%s@%s:27017/Products_desc?authSource=admin", 
+	                MONGO_USER, MONGO_DB_PASSWORD, MONGO_URI);
+	        MongoClient mongoClient = MongoClients.create(uri);
+	        return new MongoTemplate(mongoClient, "Products_desc");
 	    }
 	
-	@Bean(name = "productsMongoOperations")
-    public MongoOperations productsMongoOperations() {
-		String uri = String.format("mongodb://%s:%s@%s:27017/Products_desc?authSource=admin", 
-                MONGO_USER, MONGO_DB_PASSWORD, MONGO_URI);
-        MongoClient mongoClient = MongoClients.create(uri);
-        return new MongoTemplate(new SimpleMongoClientDatabaseFactory(mongoClient, "Products_desc"));
-    }
-
-    // MongoTemplate for the "ProductImages" database (custom configuration)
-    @Bean(name = "productImagesMongoOperations")
-    public MongoOperations productImagesMongoOperations() {
-    	String uri = String.format("mongodb://%s:%s@%s:27017/ProductImages?authSource=admin", 
-                MONGO_USER, MONGO_DB_PASSWORD, MONGO_URI);
-        MongoClient mongoClient = MongoClients.create(uri);
-      
-        
-        return new MongoTemplate(new SimpleMongoClientDatabaseFactory(mongoClient, "ProductImages"));
-    }
+	
 }
