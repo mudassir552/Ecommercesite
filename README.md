@@ -1,8 +1,4 @@
-README.txt
-
-===============================================================================
-                     eCommerce Spring Boot Application
-===============================================================================
+Ecommerce Site Using Spring boot 
 
 Project Description:
 ---------------------
@@ -81,32 +77,12 @@ Once the application is running, open a web browser and visit:
     http://localhost:8080/shopme
 
 
-Project Directory Structure:
-----------------------------
-ecommerce-springboot-thymeleaf/
-│
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── ecommerce/
-│   │   │           ├── controller/       # Spring MVC controllers
-│   │   │           ├── model/            # Entities and data models
-│   │   │           ├── repository/       # JPA repositories
-│   │   │           └── service/          # Business logic
-│   │   ├── resources/
-│   │   │   ├── templates/                 # Thymeleaf templates
-│   │   │   ├── static/                    # CSS, JS, Images
-│   │   │   └── application.properties     # Application configuration
-│   │   └── webapp/
-│   └── test/
-├── pom.xml                                # Maven configuration
-└── README.txt                             # Project description
+ecommerce-springboot-thymeleaf/ ├── src/ │ ├── main/ │ │ ├── java/ │ │ │ └── com/ │ │ │ └── ecommerce/ │ │ │ ├── controller/ # Spring MVC controllers │ │ │ ├── model/ # Entities and data models │ │ │ ├── repository/ # JPA repositories │ │ │ └── service/ # Business logic │ │ ├── resources/ │ │ │ ├── templates/ # Thymeleaf templates │ │ │ ├── static/ # CSS, JS, Images │ │ │ └── application.properties # Application configuration │ │ └── webapp/ │ └── test/ ├── pom.xml # Maven configuration file └── README.txt # Project description and documentation
 
 API Endpoints:
 --------------
 - **GET /shopme** : Landing page
-- **GET /products/Shirts : Shirts
+- **GET /products/Shirts** : Shirts
 - **POST /login**: User login.
 - **POST /register**: User registration.
 - **GET /products**: List all products.
