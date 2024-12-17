@@ -1,5 +1,5 @@
 Ecommerce Site Using Spring boot 
-(https://shakeeb.info/shopme) In progress
+
 Project Description:
 ---------------------
 This project is a full-featured eCommerce web application built with
@@ -7,6 +7,10 @@ This project is a full-featured eCommerce web application built with
 add items to their shopping cart, and complete the checkout process.
 The application supports user authentication, product management, 
 and order processing.
+
+Project live link
+-----------------
+(https://shakeeb.info/shopme) In progress
 
 Demo Screen Shots
 -------------------
