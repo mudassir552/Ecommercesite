@@ -51,6 +51,12 @@ public class EcommerceController {
 	        return "productCards";
 	    }
 	
+	 
+	 @getMapping("/test")
+	 public void testgit()
+	 {
+		 System.out.println("GITTTTTT");
+	 }
 	
 	@GetMapping("/shopme")
 	public String landingPage() {
