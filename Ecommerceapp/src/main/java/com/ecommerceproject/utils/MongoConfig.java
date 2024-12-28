@@ -8,6 +8,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoClient;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
@@ -16,7 +17,7 @@ import jakarta.annotation.PostConstruct;
 @Component
 public class MongoConfig {
 	
-	
+
 	
 	 private String MONGO_DB_PASSWORD = "";
 	    private String MONGO_USER = "";

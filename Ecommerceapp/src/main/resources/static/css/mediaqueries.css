@@ -18,6 +18,23 @@
     }
 
     @media (max-width: 768px) {
+		
+		.account--profile{
+			display:none;
+		}
+		.carousel-inner{
+			width:100%;
+			
+		}
+		.carousel-img {
+        height: 700px; 
+        margin-top:-60px;
+        width:100vw;
+        object-fit: contain;
+        
+        /* Set height to 70vh for larger screens */
+    }
+		
         .intro-title {
             font-size: 5vw; 
            

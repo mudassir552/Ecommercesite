@@ -1,0 +1,7 @@
+.blur-image {
+    filter: blur(10px); /* Initial blur effect */
+    transition: filter 0.5s ease; /* Smooth transition effect */
+    width: 100%; /* Make the image responsive */
+    height:100%;
+   
+}

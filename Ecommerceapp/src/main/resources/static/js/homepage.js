@@ -1,7 +1,11 @@
+
+export function removeImageBlurOnLoad() {
+
 document.addEventListener('DOMContentLoaded', function() {
         // Get all elements with the class 'blur-image'
         const images = document.getElementsByClassName('blur-image');
-
+     console.log("workinggggg");
+     console.log("images"+images);
         // Loop through each image
         for (let i = 0; i < images.length; i++) {
             // Check if the image is already loaded
@@ -15,6 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
-
-    
-   let container = document 
+}
+    removeImageBlurOnLoad();
+  

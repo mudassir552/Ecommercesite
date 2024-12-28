@@ -1,10 +1,15 @@
 package com.ecommerceproject.products.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Field;
 
 
-public class ProductsDto {
+
+public class ProductsDto implements Serializable  {
+	 @Field("productId") 
+	private String productId;
 	 private String productName;
 	    private String productCategory;
 	    private double price;
@@ -17,27 +22,22 @@ public class ProductsDto {
 	    private String imageUrl;
 	    
 	    
-	    
-	    
-	    
-	    
-	
 
 
 
 
 
-
-		public ProductsDto(String productName, String productCategory, double price, String productDesc,
-				String productRating, String brand, String imageIds, String imageUrl) {
+		public ProductsDto(String productId, String productName, String productCategory, double price,
+				String productDesc, String productRating, String brand, String imageId, String imageUrl) {
 			super();
+			this.productId = productId;
 			this.productName = productName;
 			this.productCategory = productCategory;
 			this.price = price;
 			this.productDesc = productDesc;
 			this.productRating = productRating;
 			this.brand = brand;
-			this.imageId = imageIds;
+			this.imageId = imageId;
 			this.imageUrl = imageUrl;
 		}
 
@@ -48,6 +48,25 @@ public class ProductsDto {
 
 		public ProductsDto() {
 			// TODO Auto-generated constructor stub
+		}
+
+
+		 
+
+
+
+
+		public String getProductId() {
+			return productId;
+		}
+
+
+
+
+
+
+		public void setProductId(String productId) {
+			this.productId = productId;
 		}
 
 

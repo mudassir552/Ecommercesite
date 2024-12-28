@@ -20,11 +20,12 @@ public class Products {
     private double price;
     
     private String productDesc;
-   
+   @Field("productRating")
     private String productRating;
     private String brand;
     
-
+    private List<String> productReviews;   
+ 
     private List<String> imageIds; 
 
     //private List<ProductSpecification> productSpecifications;  // Embedded list of specifications
@@ -36,8 +37,9 @@ public class Products {
    
 
 
+
 	public Products(String productId, String productName, String productCategory, double price, String productDesc,
-			String productRating, String brand, List<String> imageIds) {
+			String productRating, String brand, List<String> productReviews, List<String> imageIds) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -46,8 +48,24 @@ public class Products {
 		this.productDesc = productDesc;
 		this.productRating = productRating;
 		this.brand = brand;
+		this.productReviews = productReviews;
 		this.imageIds = imageIds;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -164,17 +182,42 @@ public class Products {
 
 
 
-	@Override
-	public String toString() {
-		return "Products [productId=" + productId + ", productName=" + productName + ", productCategory="
-				+ productCategory + ", price=" + price + ", productDesc=" + productDesc + ", productRating="
-				+ productRating + ", brand=" + brand + ", imageIds=" + imageIds + "]";
+	
+
+
+
+
+
+
+
+
+	public List<String> getProductReviews() {
+		return productReviews;
 	}
 
 
 
 
-	
+
+	public void setProductReviews(List<String> productReviews) {
+		this.productReviews = productReviews;
+	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Products [productId=" + productId + ", productName=" + productName + ", productCategory="
+				+ productCategory + ", price=" + price + ", productDesc=" + productDesc + ", productRating="
+				+ productRating + ", brand=" + brand + ", productReviews=" + productReviews + ", imageIds=" + imageIds
+				+ "]";
+	}
+
+
+
+
    
    
 }

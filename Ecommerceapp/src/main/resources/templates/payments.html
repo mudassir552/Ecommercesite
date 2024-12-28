@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment Checkout</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h2>Stripe Payment</h2>
+    
+    <form id="payment-form">
+        <div id="card-element">
+            <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display form errors. -->
+        <div id="card-errors" role="alert"></div>
+
+        <button id="submit">Pay $50.00</button>
+    </form>
+
+    <script>
+        var stripe = Stripe('pk_test_51QQXrVGaKY65ZU6KA2cJC28FXVOfrMPcZZbA39EXiYfNw17X35Ts7svOuu2v0xtypqsCQASOKrTMp068eLQ0aIgr00Wf6i8cUS'); // Replace with your publishable key
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        card.mount('#card-element');
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+async function createPayment() {
+    try {
+        // Create Payment Method
+        const result = await stripe.createPaymentMethod('card', card);
+        
+        if (result.error) {
+            // Show error in payment form
+            console.log("Error:", result.error);
+            document.getElementById('card-errors').textContent = result.error.message;
+            return; // Exit early if there's an error
+        }
+
+        // Call backend to create the payment intent and confirm payment
+        const response = await fetch('/payment/create-payment-intent?amount=5000', { // Amount is in cents
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({payment_method: result.paymentMethod.id})
+        });
+
+        const paymentResposneDto = await response.json(); // Parse the JSON response
+       console.log(" Client Secret: " + paymentResposneDto);
+        console.log("Payment Intent Client Secret: " + paymentResposneDto.clientSecret+"2"+paymentResposneDto.PaymentMethodType);
+
+        // Now you can confirm the payment
+        const confirmResult = paymentResposneDto.status;
+     console.log("confirm"+confirmResult);
+        if (confirmResult!=200) {
+            // Show error to customer
+            console.log("Confirmation Error:", confirmResult.error);
+            document.getElementById('card-errors').textContent = confirmResult.error.message;
+        } else {
+            if (confirmResult.paymentIntent.status === 'succeeded') {
+                alert("Payment Successful!");
+            }
+        }
+    } catch (error) {
+        console.error('Error during payment process:', error);
+        document.getElementById('card-errors').textContent = 'Payment failed. Please try again.';
+    }
+}
+
+
+createPayment();
+
+           
+        });
+    </script>
+</body>
+</html>
