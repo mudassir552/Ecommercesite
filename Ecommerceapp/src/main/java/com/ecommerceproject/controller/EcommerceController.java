@@ -52,11 +52,7 @@ public class EcommerceController {
 	    }
 	
 	 
-	 @getMapping("/test")
-	 public void testgit()
-	 {
-		 System.out.println("GITTTTTT");
-	 }
+	
 	
 	@GetMapping("/shopme")
 	public String landingPage() {
