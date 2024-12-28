@@ -1,56 +1,41 @@
 pipeline {
-    agent any
+    agent any  // Runs on any available agent (in your case, the same server)
 
     environment {
-        REMOTE_SERVER = '147.79.75.161' // Replace with the actual remote server
-        REMOTE_USER = 'root' // Replace with the user on the remote server
-        JAR_FILE = 'Financeapp-0.0.1-SNAPSHOT.jar' // Ensure the .jar extension is included
-        DEPLOY_DIR = '/opt/app' // Replace with the deployment directory on the remote server
+        PROJECT_PATH = "/opt/app"  // Path to your project on the Jenkins server
     }
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building the application...'
-                // Build the application (uncomment this line if using Maven)
-                sh 'mvn clean package' // Uncomment if using Maven to build your application
+             
+                git branch: 'main', url: 'https://github.com/mudassir552/Ecommercesite.git'
             }
         }
 
-        stage('Transfer Jar to Remote Server') {
+        stage('Build JAR') {
             steps {
-                script {
-                    sshagent(['476ff323-4fef-4bd6-ab65-7ef84e590edf']) {
-                        sh """
-                            scp -o StrictHostKeyChecking=no target/${JAR_FILE} ${REMOTE_USER}@${REMOTE_SERVER}:${DEPLOY_DIR}
-                        """
-                    }
+                echo 'Building the JAR file'
+                dir("${PROJECT_PATH}") {
+                    // Run Maven build to package the app
+                    sh 'mvn  package -DskipTests'
                 }
             }
         }
 
-        stage('Deploy on Remote Server') {
+        stage('Deploy to Server') {
             steps {
-                script {
-                    sshagent(['476ff323-4fef-4bd6-ab65-7ef84e590edf']) {
-                        sh """
-                            ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_SERVER} '
-                            cd ${DEPLOY_DIR} &&
-                            nohup java -jar ${JAR_FILE} > app.log 2>&1 &
-                            '
-                        """
-                    }
-                }
+                echo 'Deploying the JAR file locally'
+                
+              sh 'cd ${PROJECT_PATH}/target && java -jar Financeapp-0.0.1-SNAPSHOT.jar --server.port=8081 &'
+              
             }
         }
     }
 
     post {
-        always {
-            echo 'Cleanup actions can be added here if needed.'
-        }
         success {
-            echo 'Deployment successful!'
+            echo 'Deployment to local server successful!'
         }
         failure {
             echo 'Deployment failed.'

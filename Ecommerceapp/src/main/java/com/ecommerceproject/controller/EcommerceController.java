@@ -85,6 +85,13 @@ public class EcommerceController {
 		return "checkout";
 	}
 	
+	
+	@GetMapping("/test")
+	public void gitTest(){
+		System.out.println("testing jenkins");
+		
+	}
+	
 	@PostMapping("/submit-rating")
 	@ResponseBody
 	public ResponseEntity<?> saveProductRating(@RequestBody Products productdto) throws Exception {
