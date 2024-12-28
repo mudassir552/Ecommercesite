@@ -43,7 +43,7 @@ public class EcommerceController {
 	
 	 @GetMapping("/products/{category}")
 	    public  String getProductsByCategory(@PathVariable("category") String category, Model model){
-		 System.out.println("AAAAAAAAAAAA"+category);
+		 
 		 List<ProductsDto> ProductsDto = ecommerceserviceimpl.findProductsByCategory(category);
 		 
 		 ProductsDto.forEach(prod -> System.out.println("CONTROLLER"+prod.getProductId()));
@@ -90,7 +90,7 @@ public class EcommerceController {
 	public ResponseEntity<?> saveProductRating(@RequestBody Products productdto) throws Exception {
 	    try {
 	        if (ecommerceserviceimpl.saveProductRating(productdto) != null) {
-	            // Return JSON with a "message" key
+	           
 	            return ResponseEntity.ok().body(Collections.singletonMap("message", "Product Rating updated successfully."));
 	        } else {
 	            return ResponseEntity.badRequest().body(Collections.singletonMap("message", "Failed to update product rating."));
@@ -124,10 +124,10 @@ public ResponseEntity<?> saveProductReviews(@PathVariable("id")String productId,
 			    	 return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
 			    }
 
-			    // Get the reviews (productReviews) from the product document
-			    List<String> reviews = product.getProductReviews(); // Assuming you have a `getProductReviews` method in `Products` class
+		
+			    List<String> reviews = product.getProductReviews(); 
 
-			    // Return the reviews in the response
+			   
 			    return ResponseEntity.ok(reviews);
 			
 		}

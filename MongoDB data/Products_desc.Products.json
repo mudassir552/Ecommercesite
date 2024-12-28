@@ -6,7 +6,9 @@
   "price": 899,
   "imageIds": "1",
   "productDesc": "Cotton fabric with a crisp finish.",
-  "brand": "Roadster"
+  "brand": "Roadster",
+  "productRating": null,
+  "productReviews": "[]"
 },
 {
   "_id": "671dfb65a4d9c5581de1d5b4",
@@ -16,7 +18,9 @@
   "price": 1099,
   "imageIds": "2",
   "productDesc": "Comfortable cotton with a trendy check pattern.",
-  "brand": "Roadster"
+  "brand": "Roadster",
+  "productRating": "5",
+  " productReviews \"[]\"": ""
 },
 {
   "_id": "671dfb65a4d9c5581de1d5b5",
@@ -26,7 +30,34 @@
   "price": 1299,
   "imageIds": "3",
   "productDesc": "Stylish slim fit for a modern look.",
-  "brand": "Roadster"
+  "brand": "Roadster",
+  "productRating": "1",
+  "productReviews": [
+    [
+      "hii"
+    ],
+    [
+      "abc"
+    ],
+    [
+      "cgg"
+    ],
+    [
+      "www"
+    ],
+    [
+      "tyy"
+    ],
+    [
+      "ayyuii"
+    ],
+    [
+      "ttara"
+    ],
+    [
+      "jajajjaja"
+    ]
+  ]
 },
 {
   "_id": "671dfb65a4d9c5581de1d5b6",
@@ -36,7 +67,8 @@
   "price": 999,
   "imageIds": "4",
   "productDesc": "Perfect for a laid-back day out.",
-  "brand": "Roadster"
+  "brand": "Roadster",
+  "productRating": "5"
 },
 {
   "_id": "671dfb65a4d9c5581de1d5b7",
@@ -46,7 +78,8 @@
   "price": 1499,
   "imageIds": "5",
   "productDesc": "Classic denim look with a relaxed fit.",
-  "brand": "Roadster"
+  "brand": "Roadster",
+  "productRating": null
 },
 {
   "_id": "671dfb65a4d9c5581de1d5ba",
@@ -56,7 +89,13 @@
   "price": 1199,
   "imageIds": "6",
   "productDesc": "A versatile shirt for casual outings.",
-  "brand": "Roadster"
+  "brand": "Roadster",
+  "productRating": "5",
+  "productReviews": [
+    [
+      "red is good"
+    ]
+  ]
 },
 {
   "_id": "671dfb65a4d9c5581de1d5bb",
@@ -66,5 +105,286 @@
   "price": 1399,
   "imageIds": "7",
   "productDesc": "Elegant choice for formal occasions.",
-  "brand": "Roadster"
+  "brand": "Roadster",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e1",
+  "productId": "8",
+  "productName": "iPhone 15 Pro Max",
+  "productCategory": "Electronics",
+  "subCategory": "Smartphones",
+  "price": 159900,
+  "imageIds": "8",
+  "productDesc": "6.7-inch Super Retina XDR display, A17 Pro chip, 48MP triple camera, 5G support.",
+  "brand": "Apple",
+  "productRating": "3"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e2",
+  "productId": "9",
+  "productName": "Samsung Galaxy Z Fold 5",
+  "productCategory": "Electronics",
+  "subCategory": "Smartphones",
+  "price": 179999,
+  "imageIds": "9",
+  "productDesc": "7.6-inch foldable AMOLED display, Snapdragon 8 Gen 2, 50MP triple camera, 12GB RAM.",
+  "brand": "Samsung",
+  "productRating": "4"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e3",
+  "productId": "10",
+  "productName": "OnePlus 11 5G",
+  "productCategory": "Electronics",
+  "subCategory": "Smartphones",
+  "price": 54999,
+  "imageIds": "10",
+  "productDesc": "6.7-inch Fluid AMOLED display, Snapdragon 8 Gen 2, 50MP triple camera, 16GB RAM.",
+  "brand": "OnePlus",
+  "productRating": "4"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e4",
+  "productId": "11",
+  "productName": "Xiaomi 13 Pro",
+  "productCategory": "Electronics",
+  "subCategory": "Smartphones",
+  "price": 74999,
+  "imageIds": "11",
+  "productDesc": "6.73-inch AMOLED display, Snapdragon 8 Gen 2, 50MP Leica triple camera, 12GB RAM.",
+  "brand": "Xiaomi",
+  "productRating": "4"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e5",
+  "productId": "12",
+  "productName": "Realme GT 2 Pro",
+  "productCategory": "Electronics",
+  "subCategory": "Smartphones",
+  "price": 39999,
+  "imageIds": "12",
+  "productDesc": "6.7-inch AMOLED display, Snapdragon 8 Gen 1, 50MP triple camera, 12GB RAM.",
+  "brand": "Realme",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e6",
+  "productId": "13",
+  "productName": "Samsung Galaxy S23 Ultra",
+  "productCategory": "Electronics",
+  "subCategory": "Smartphones",
+  "price": 124999,
+  "imageIds": "13",
+  "productDesc": "6.8-inch Dynamic AMOLED display, Snapdragon 8 Gen 2, 200MP quad camera, 12GB RAM.",
+  "brand": "Samsung",
+  "productRating": "4"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e7",
+  "productId": "14",
+  "productName": "Vivo X90 Pro 5G",
+  "productCategory": "Electronics",
+  "subCategory": "Smartphones",
+  "price": 82999,
+  "imageIds": "14",
+  "productDesc": "6.78-inch AMOLED display, Dimensity 9200, 50MP triple camera, 12GB RAM.",
+  "brand": "Vivo",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e8",
+  "productId": "15",
+  "productName": "Samsung Galaxy Tab S7",
+  "productCategory": "Electronics",
+  "subCategory": "Tablets",
+  "price": 61999,
+  "imageIds": "15",
+  "productDesc": "11-inch display, Snapdragon 865+, S Pen support, and 6GB RAM.",
+  "brand": "Samsung",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5e9",
+  "productId": "16",
+  "productName": "Apple iPad 10.2 (9th Gen)",
+  "productCategory": "Electronics",
+  "subCategory": "Tablets",
+  "price": 31900,
+  "imageIds": "16",
+  "productDesc": "10.2-inch Retina display, A13 Bionic chip, 64GB storage, and iPadOS.",
+  "brand": "Apple",
+  "productRating": "3"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5ea",
+  "productId": "17",
+  "productName": "Lenovo Tab P11",
+  "productCategory": "Electronics",
+  "subCategory": "Tablets",
+  "price": 24999,
+  "imageIds": "17",
+  "productDesc": "11-inch 2K display, Qualcomm Snapdragon 662, 4GB RAM, and Dolby Atmos.",
+  "brand": "Lenovo",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5eb",
+  "productId": "18",
+  "productName": "Realme Pad",
+  "productCategory": "Electronics",
+  "subCategory": "Tablets",
+  "price": 16999,
+  "imageIds": "18",
+  "productDesc": "10.4-inch display, MediaTek Helio G80, 4GB RAM, and Dolby Atmos sound.",
+  "brand": "Realme",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5ec",
+  "productId": "19",
+  "productName": "Samsung Galaxy Tab A8",
+  "productCategory": "Electronics",
+  "subCategory": "Tablets",
+  "price": 17999,
+  "imageIds": "19",
+  "productDesc": "10.5-inch display, Unisoc T618, 3GB RAM, and 32GB storage.",
+  "brand": "Samsung",
+  "productRating": "1"
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5ed",
+  "productId": "20",
+  "productName": "Mi Pad 5",
+  "productCategory": "Electronics",
+  "subCategory": "Tablets",
+  "price": 26999,
+  "imageIds": "20",
+  "productDesc": "11-inch 120Hz display, Qualcomm Snapdragon 860, 6GB RAM, and 128GB storage.",
+  "brand": "Mi",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5ee",
+  "productId": "21",
+  "productName": "Oppo Pad",
+  "productCategory": "Electronics",
+  "subCategory": "Tablets",
+  "price": 25999,
+  "imageIds": "21",
+  "productDesc": "11-inch 120Hz display, Qualcomm Snapdragon 870, 6GB RAM, and 128GB storage.",
+  "brand": "Oppo",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5gd",
+  "productId": "22",
+  "productName": "Asus ROG Strix G15",
+  "productCategory": "Electronics",
+  "subCategory": "Laptops",
+  "price": 125000,
+  "imageIds": "21",
+  "productDesc": "15.6-inch Full HD display, AMD Ryzen 7 5800H, 16GB RAM, NVIDIA GeForce RTX 3070.",
+  "brand": "Asus",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5ef",
+  "productId": "23",
+  "productName": "Acer Predator Helios 300",
+  "productCategory": "Electronics",
+  "subCategory": "Laptops",
+  "price": 135000,
+  "imageIds": "23",
+  "productDesc": "15.6-inch 144Hz display, Intel i7-11800H, 16GB RAM, NVIDIA RTX 3060.",
+  "brand": "Acer",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de15ef",
+  "productId": "24",
+  "productName": "Dell XPS 13 9310",
+  "productCategory": "Electronics",
+  "subCategory": "Laptops",
+  "price": 145000,
+  "imageIds": "24",
+  "productDesc": "13.4-inch 4K display, Intel Core i7-1165G7, 16GB RAM, 512GB SSD.",
+  "brand": "Dell",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581dd5f0",
+  "productId": "25",
+  "productName": "HP Pavilion x360",
+  "productCategory": "Electronics",
+  "subCategory": "Laptops",
+  "price": 65000,
+  "imageIds": "25",
+  "productDesc": "14-inch Full HD display, Intel i5-1135G7, 8GB RAM, 512GB SSD.",
+  "brand": "HP",
+  "productRating": "4"
+},
+{
+  "_id": "671dfb65a9c5581de1d5f1",
+  "productId": "26",
+  "productName": "MacBook Air M2",
+  "productCategory": "Electronics",
+  "subCategory": "Laptops",
+  "price": 120000,
+  "imageIds": "26",
+  "productDesc": "13.3-inch Retina display, Apple M2 chip, 8GB RAM, 256GB SSD.",
+  "brand": "Apple",
+  "productRating": null
+},
+{
+  "_id": "671dfb65a4d9c5581de1d5",
+  "productId": "27",
+  "productName": "Mi Notebook 14 Horizon Edition",
+  "productCategory": "Electronics",
+  "subCategory": "Laptops",
+  "price": 56000,
+  "imageIds": "27",
+  "productDesc": "14-inch Full HD display, Intel i5-10210U, 8GB RAM, 512GB SSD.",
+  "brand": "Mi",
+  "productRating": null
+},
+{
+  "_id": "65fce6c19db7634f8f1da392",
+  "productId": "28",
+  "productName": "Dell XPS 13 9310",
+  "productCategory": "Electronics",
+  "subCategory": "Laptops",
+  "price": 145000,
+  "imageIds": "28",
+  "productDesc": "13.4-inch 4K display, Intel Core i7-1165G7, 16GB RAM, 512GB SSD.",
+  "brand": "Dell",
+  "productRating": null
+},
+{
+  "_id": "63d7f284a857cf4b9969b1d2",
+  "productId": "29",
+  "productName": "Lenovo Legion 5 Pro",
+  "productCategory": "Electronics",
+  "subCategory": "Laptops",
+  "price": 135000,
+  "imageIds": "29",
+  "productDesc": "16-inch 165Hz display, AMD Ryzen 7 5800H, 16GB RAM, NVIDIA RTX 3060.",
+  "brand": "Lenovo",
+  "productRating": null
+},
+{
+  "_id": {
+    "$oid": "675472ff69716d2d8c36d85d"
+  },
+  "productId": "8",
+  "productName": "iPhone 15 Pro Max",
+  "productCategory": "Electronics",
+  "price": 159900,
+  "productDesc": "6.7-inch Super Retina XDR display, A17 Pro chip, 48MP triple camera, 5G support.",
+  "productRating": "3",
+  "brand": "Apple",
+  "imageIds": [
+    "8"
+  ],
+  "_class": "com.ecommerceproject.products.Products"
 }]
