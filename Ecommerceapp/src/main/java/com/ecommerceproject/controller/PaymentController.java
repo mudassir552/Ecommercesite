@@ -20,7 +20,7 @@ public class PaymentController {
     public String showCheckoutPage(Model model) {
         // Add necessary attributes for the view (e.g., the total amount)
         model.addAttribute("amount", 5000); // Amount in cents ($50.00)
-        return "payments"; // This refers to checkout.html in the templates folder
+        return "payments"; 
     }
 
     @PostMapping("/create-payment-intent")
