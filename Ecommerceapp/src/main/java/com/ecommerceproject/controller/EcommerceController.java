@@ -135,6 +135,10 @@ public ResponseEntity<?> saveProductReviews(@PathVariable("id")String productId,
 			
 		}
 	
-	
+	@GetMapping("/test")
+	public void gitTest(){
+		System.out.println("testing jenkins");
+		
+	}
 	
 }
