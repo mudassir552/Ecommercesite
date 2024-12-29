@@ -86,11 +86,7 @@ public class EcommerceController {
 	}
 	
 	
-	@GetMapping("/test")
-	public void gitTest(){
-		System.out.println("testing jenkins");
-		
-	}
+	
 	
 	@PostMapping("/submit-rating")
 	@ResponseBody
@@ -138,5 +134,11 @@ public ResponseEntity<?> saveProductReviews(@PathVariable("id")String productId,
 			    return ResponseEntity.ok(reviews);
 			
 		}
+	
+	@GetMapping("/test")
+	public void gitTest(){
+		System.out.println("testing jenkins");
+		
+	}
 	
 }
