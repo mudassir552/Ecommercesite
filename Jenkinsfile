@@ -2,7 +2,7 @@ pipeline {
     agent any  // Runs on any available agent (in your case, the same server)
 
     environment {
-        PROJECT_PATH = "/Ecommerceapp"  // Path to your project on the Jenkins server
+        PROJECT_PATH = "/opt/app"  // Path to your project on the Jenkins server
     }
 
     stages {
