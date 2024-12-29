@@ -27,7 +27,7 @@ public class PaymentController {
     @ResponseBody
     public PaymentResponseDto createPaymentIntent(@RequestParam long amount) {
         try {
-            // Call the service to create a payment intent
+            
             return stripePaymentService.createPaymentIntent(amount);
         } catch (StripeException e) {
             e.printStackTrace();
