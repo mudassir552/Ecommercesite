@@ -18,8 +18,8 @@ public class PaymentController {
 
     @GetMapping("/payments")
     public String showCheckoutPage(Model model) {
-        // Add necessary attributes for the view (e.g., the total amount)
-        model.addAttribute("amount", 5000); // Amount in cents ($50.00)
+       
+        model.addAttribute("amount", 5000); 
         return "payments"; 
     }
 
