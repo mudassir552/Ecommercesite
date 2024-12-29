@@ -54,7 +54,7 @@ public class EcommerceController {
 	 
 	
 	
-	@GetMapping("/shopme")
+	@GetMapping("/shopme") //shopme endpoint
 	public String landingPage() {
 		
 		return "landingPage";
