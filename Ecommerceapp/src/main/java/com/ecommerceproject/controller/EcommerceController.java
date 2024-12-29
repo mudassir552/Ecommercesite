@@ -46,7 +46,7 @@ public class EcommerceController {
 		 
 		 List<ProductsDto> ProductsDto = ecommerceserviceimpl.findProductsByCategory(category);
 		 
-		 ProductsDto.forEach(prod -> System.out.println("CONTROLLER"+prod.getProductId()));
+		 
 	        model.addAttribute("ProductsDto",ProductsDto);
 	        return "productCards";
 	    }
