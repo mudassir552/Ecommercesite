@@ -45,8 +45,7 @@ public class EcommerceController {
 	    public  String getProductsByCategory(@PathVariable("category") String category, Model model){
 		 
 		 List<ProductsDto> ProductsDto = ecommerceserviceimpl.findProductsByCategory(category);
-		 
-		 //comment added
+		
 	        model.addAttribute("ProductsDto",ProductsDto);
 	        return "productCards";
 	    }
