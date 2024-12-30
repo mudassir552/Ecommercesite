@@ -46,7 +46,7 @@ public class EcommerceController {
 		 
 		 List<ProductsDto> ProductsDto = ecommerceserviceimpl.findProductsByCategory(category);
 		 
-		 
+		 //comment added
 	        model.addAttribute("ProductsDto",ProductsDto);
 	        return "productCards";
 	    }
