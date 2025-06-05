@@ -1,0 +1,62 @@
+@media (min-width: 992px) { /* Adjust this breakpoint as needed */
+    .carousel-img {
+        height: 70vh; 
+        margin:10px;
+        object-fit: cover;
+        
+        /* Set height to 70vh for larger screens */
+    }
+    
+	
+    
+}
+
+
+
+.intro-title {
+        font-size: 2.5rem; /* Default size */
+    }
+
+    @media (max-width: 768px) {
+		
+		.account--profile{
+			display:none;
+		}
+		.carousel-inner{
+			width:100%;
+			
+		}
+		.carousel-img {
+        height: 700px; 
+        margin-top:-60px;
+        width:100vw;
+        object-fit: contain;
+        
+        /* Set height to 70vh for larger screens */
+    }
+		
+        .intro-title {
+            font-size: 5vw; 
+           
+            margin-right:-40px;/* Smaller size for smaller screens */
+        }
+        
+        .navbar-toggler{
+			
+			position:relative;
+			right:60px;
+		}
+        
+         .carousel-inner .carousel-item{
+				  max-height:100vh !important;
+				 
+			  }
+    }
+
+    .highlight {
+        color: #FF5733; /* Your chosen color */
+    }
+    
+ 
+	  
+		

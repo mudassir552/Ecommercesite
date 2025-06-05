@@ -1,0 +1,402 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html {
+    font-size: 1rem;  /* This is the default value */
+}
+        .star-rating {
+            display: inline-flex;
+            direction: row-reverse;
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            padding: 0 5px;
+
+            transition: color 0.3s;
+        }
+
+        .card-body #productBrand{
+			animation: moveRight 2s ;
+
+		}
+
+		@keyframes moveRight {
+  0% {
+
+    font-size: 10px;
+  }
+  100% {
+
+  }
+  }
+
+       @media (min-width: 768px) {
+		   .card-body{
+			  position:absolute;
+			  right:0px;
+
+		   }
+		   }
+
+ @media (max-width: 768px) {
+		    .addReviewBtn{
+				width:25%;
+				font-size:0.8rem;
+			}
+			.first-review{
+				font-size:14px;
+				width:200px;
+
+				left:10px;
+			}
+		   }
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+
+        <div id="productDetails" class="card">
+            <img id="productImage" style="width:300px;" class="card-img-top" src="" alt="Product Image">
+            <div class="card-body col-12 col-md-4 order-md-1 order-2" >
+                <h5 id="productBrand" style="font-size:30px;" class="card-title"></h5>
+                <br>
+                <p id="productDesc" class="card-text"></p>
+
+                <p id="productPrice" class="card-text"></p>
+                <p id="productRating" class="card-text" ></p>
+                <br>
+                <div class="mt-4">
+                    <a href="/payments"> <button class="btn payment btn-primary">Proceed to Payment</button></a>
+                </div>
+            </div>
+        </div>
+
+       <br>
+
+
+      <div class="main-container" style="display: flex; margin-top: 30px; justify-content: space-between; width: 100%;">
+
+		   <button class="btn btn-primary addReviewBtn" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 25%; height: 50px; display:block;margin-top:80px;">Add a Review</button>
+    <!-- Add Review Section (Left) <div class="container review-textarea" style=" visibility: hidden;width: 45%; height: 100vh; padding: 20px;"> -->
+
+
+
+
+
+      <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="container mt-5">
+    <!-- Review Form -->
+    <form id="reviewForm" >
+        <!-- One word for the product -->
+        <div class="mb-3">
+            <label for="productOneWord" class="form-label">One word for the product</label>
+            <input type="text" class="form-control" id="productOneWord" placeholder="Describe the product in one word">
+        </div>
+
+        <!-- What you liked about the product -->
+        <div class="mb-3">
+            <label for="likedProduct" class="form-label">What did you like in this product?</label>
+            <textarea class="form-control" id="likedProduct" rows="3" placeholder="What did you like about the product?"></textarea>
+        </div>
+
+        <!-- What was wrong with the product -->
+        <div class="mb-3">
+            <label for="wrongProduct" class="form-label">What was wrong with this product?</label>
+            <textarea class="form-control" id="wrongProduct" rows="3" placeholder="What issues did you face with the product?"></textarea>
+        </div>
+
+
+
+        <!-- Submit Button -->
+        <button class="btn btn-primary submit-review"style="display:block;margin:auto;" type="submit">Submit Review</button>
+    </form>
+</div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Customer Reviews Section (Right) -->
+    <div class="Customer-Reviews" style="width: 45%; padding: 20px;">
+        <h2 style="text-align: center;"><strong>Customer Reviews</strong></h2>
+        <div class="reviews" style="margin: auto; position: relative;">
+
+            <div class="feedback-item userfeedback"></div>
+            <div class="feedback-item userliked"> </div>
+            <div class="feedback-item userdisliked"></div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Checkout Form -->
+
+    </div>
+
+    <script>
+
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+			 let myModalElement = document.getElementById('myModal');
+           let paymentBtn=document.querySelector(".payment");
+			const  addReviewsBtn=document.querySelector(".addReviewBtn");
+			//const textarea = document.querySelector(".review-textarea");
+			//console.log(addReviewsBtn);
+         const submitreview=document.querySelector(".submit-review");
+
+
+
+           const productData = JSON.parse(localStorage.getItem('selectedProduct'));
+
+    const id=productData.id;
+
+
+  let userfeedback=document.querySelector(".userfeedback");
+  let userliked=document.querySelector(".userliked");
+  let userdisliked=document.querySelector(".userdisliked");
+
+ console.log(userfeedback, userliked, userdisliked);
+
+let reviewsHtml = '';
+
+submitreview.addEventListener('click',(e)=>{
+	e.preventDefault();
+	 const oneword = document.getElementById('productOneWord').value;
+        const liked = document.getElementById('likedProduct').value;
+        const notliked = document.getElementById('wrongProduct').value;
+
+
+        console.log("One word:", oneword);
+        console.log("Liked:", liked);
+        console.log("Not liked:", notliked);
+	     console.log("oneword"+oneword);
+
+	     const reviews =
+    {
+        productReviews: `${oneword}+${liked}+${notliked}`,
+
+    }
+
+
+
+	fetch(`/product/${id}/reviews/`, {
+    method: 'POST',
+       body: JSON.stringify(reviews),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response =>{
+	console.log('Response Status:', response.status);
+	 if (response.ok) {
+		 console.log("okkkkkk");
+		return response.json();
+         // Parse the JSON response if status is OK
+    }
+
+})
+.then ( ()=>{
+
+
+	 alert("your review submitted");
+	 window.location.href = '/checkout';
+})
+
+.catch((e)=>{
+	console.log(e);
+	alert ("some error occured while saving review");
+})
+
+})
+
+fetch(`/product/${id}/reviews/`, {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+.then(response => {
+    if (response.ok) {
+      console.log(response);
+        return response.json();
+    } else {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+})
+.then(reviews => {
+   console.log(reviews);
+
+
+
+    let reviewsHtml = '';
+
+    if (reviews.length > 0) {
+        console.log(reviews.length);
+
+        reviews.forEach(review => {
+        const parts = review.productReviews.split("+").map(item => item.trim());
+
+
+    const [onword, liked, disliked] = parts;
+    console.log(`Onword: ${onword}, Liked: ${liked}, Disliked: ${disliked}`);
+            reviewsHtml += `<img src="/images/review.png" alt="Review">
+                            <p>anonymous</p>
+
+
+                             <div class="ReviewContainer">
+                            <p style="text-align:center; position:relative; "><Strong>User feedback</Strong>  :${onword}</p>
+
+
+
+                            <p style="text-align:center; position:relative;"><Strong>User liked</Strong>:${liked}</p>
+
+                            <p style="text-align:center; position:relative; "><Strong>User disliked</Strong> :${disliked}</p>
+                        </div >
+                            <hr>
+
+
+                            `;
+
+        });
+    } else {
+        reviewsHtml = `<h2 class="first-review" style="position:relative; left:80px; top:50px;">Be the first to Review</h2>`;
+    }
+
+    document.querySelector('.reviews').innerHTML = reviewsHtml;
+})
+.catch(error => {
+    console.error('Error fetching reviews:', error);
+
+    document.querySelector('.reviews').innerHTML = `<p>Error loading reviews. Please try again later.</p>`;
+});
+
+            if (productData) {
+				  document.getElementById('productBrand').textContent = productData.id;
+                document.getElementById('productBrand').textContent = productData.brand;
+                document.getElementById('productDesc').textContent = productData.desc;
+                document.getElementById('productPrice').textContent = "Rs: " + productData.price;
+
+                document.getElementById('productImage').src = productData.imageUrl;
+
+    document.getElementById('productRating').innerHTML = "Rating: " +
+    (productData.rating ===null ? showRatings(productData.rating) : productData.rating);
+
+            } else {
+                window.location.href = '/';
+            }
+
+
+
+
+
+            function  showRatings(rating){
+
+
+		 console.log("running");
+
+
+			 console.log("inside");
+
+
+		   let html=`
+
+
+
+
+		      <div class="mt-4">
+
+            <div class="star-rating">
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+            </div>
+            <p>Your rating: <span id="userRating">0</span> out of 5 stars</p>
+        </div>
+
+		   `
+		     return html;
+
+
+
+
+	   }
+
+const ratingInputs = document.querySelectorAll('.star-rating input');
+
+
+ratingInputs.forEach(input => {
+    input.addEventListener('change', function() {
+		      const userRatingDisplay = document.getElementById('userRating');
+
+
+
+        ratingInputs.forEach(radio => {
+            const label = document.querySelector(`label[for="${radio.id}"]`);
+            userRatingDisplay.textContent = input.value;
+            if (parseInt(radio.value) <= parseInt(input.value)) {
+
+                label.style.color = 'gold';
+
+
+            } else {
+
+                label.style.color = '#ddd';
+                userRatingDisplay.textContent = input.value;
+            }
+        });
+
+         const rating = input.value;
+        sendRatingToServer(rating);
+    });
+});
+
+
+       function sendRatingToServer(productRating ) {
+    const productId =productData.id ;
+    console.log("prodId"+productId);
+    fetch('/submit-rating', {
+       method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId, productRating }),
+    })
+    .then(response => response.json())
+    .then(data => {
+
+      document.getElementById("productRating").innerHTML+=`<p>Rating have been saved</p>`;
+
+
+
+
+    })
+    .catch(error => {
+        console.error('Error submitting rating:', error);
+    });
+}
+
+});
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script th:src="@{/js/checkout.js}"></script>
+</body>
+</html>
