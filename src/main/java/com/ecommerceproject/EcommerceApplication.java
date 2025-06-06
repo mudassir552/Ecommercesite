@@ -15,7 +15,7 @@ import  com.ecommerceproject.repository.ImageRepository;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
 @EnableCaching
-@SpringBootApplication(exclude = {MongoAutoConfiguration.class})
+@SpringBootApplication(exclude = {MongoAutoConfiguration.class, DataSourceAutoConfiguration.class })
 @EnableMongoRepositories(basePackageClasses={Ecommercerepo.class,ImageRepository.class})
 @Component(value = "com.ecommerceproject.*")
 
